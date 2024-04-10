@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="CharacterOptions" load_steps=11 format=3 uid="uid://ovol828p1j63"]
+
+[ext_resource type="Script" path="res://Scripts/character_options_data.gd" id="1_7s0uf"]
+[ext_resource type="Texture2D" uid="uid://7rd0x02oxatk" path="res://Assets/accessories/char_a_p1_5hat_pfht_v04.png" id="1_h43n2"]
+[ext_resource type="Texture2D" uid="uid://ddt18x30kjjmp" path="res://Assets/body/char_a_p1_0bas_humn_v01.png" id="1_ncigu"]
+[ext_resource type="Texture2D" uid="uid://blwsxhwbrrvcb" path="res://Assets/accessories/char_a_p1_5hat_pnty_v04.png" id="2_hab5x"]
+[ext_resource type="Texture2D" uid="uid://dpg70eiwafm8x" path="res://Assets/hair/char_a_p1_4har_bob1_v01.png" id="2_us00n"]
+[ext_resource type="Texture2D" uid="uid://dfs4nij67j226" path="res://Assets/hair/char_a_p1_4har_dap1_v01.png" id="3_idxms"]
+[ext_resource type="Texture2D" uid="uid://b0xun5rcnfovr" path="res://Assets/outfit/char_a_p1_1out_boxr_v01.png" id="4_l0cc7"]
+[ext_resource type="Texture2D" uid="uid://ba28jlm8e6k6m" path="res://Assets/outfit/char_a_p1_1out_fstr_v04.png" id="5_5g844"]
+[ext_resource type="Texture2D" uid="uid://c48ohynu2f5ou" path="res://Assets/outfit/char_a_p1_1out_pfpn_v04.png" id="6_cmc6w"]
+[ext_resource type="Texture2D" uid="uid://cdjk2uu85caot" path="res://Assets/outfit/char_a_p1_1out_undi_v01.png" id="7_k8ykr"]
+
+[resource]
+script = ExtResource("1_7s0uf")
+body_collection = {
+"human": ExtResource("1_ncigu")
+}
+hair_collection = {
+"bob": ExtResource("2_us00n"),
+"dap": ExtResource("3_idxms"),
+"none": null
+}
+outfit_collection = {
+"boxers": ExtResource("4_l0cc7"),
+"fstr": ExtResource("5_5g844"),
+"pfpn": ExtResource("6_cmc6w"),
+"undis": ExtResource("7_k8ykr")
+}
+hat_collection = {
+"none": null,
+"other": ExtResource("1_h43n2"),
+"wizard": ExtResource("2_hab5x")
+}
+body_color_options = [Color(0.96, 0.8, 0.69, 1), Color(0.72, 0.54, 0.39, 1), Color(0.45, 0.34, 0.27, 1)]
+hair_color_options = [Color(0.1, 0.1, 0.1, 1), Color(0.4, 0.2, 0.1, 1), Color(0.9, 0.6, 0.2, 1), Color(0.5, 0.25, 0, 1)]
+color_options = [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1), Color(0, 0, 0, 1)]

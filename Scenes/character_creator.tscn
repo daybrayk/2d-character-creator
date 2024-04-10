@@ -1,0 +1,278 @@
+[gd_scene load_steps=11 format=3 uid="uid://smxjf2lc2pf0"]
+
+[ext_resource type="Script" path="res://Scripts/character_creator.gd" id="1_bg80m"]
+[ext_resource type="Texture2D" uid="uid://ddt18x30kjjmp" path="res://Assets/body/char_a_p1_0bas_humn_v01.png" id="1_pccad"]
+[ext_resource type="Script" path="res://Scripts/Body.gd" id="2_gyln6"]
+[ext_resource type="PackedScene" uid="uid://cs35us8ta6wc5" path="res://Scenes/main.tscn" id="2_ycbt4"]
+[ext_resource type="Texture2D" uid="uid://b0xun5rcnfovr" path="res://Assets/outfit/char_a_p1_1out_boxr_v01.png" id="3_egm57"]
+[ext_resource type="Resource" uid="uid://ovol828p1j63" path="res://Resources/CharacterOptions.tres" id="3_war4w"]
+[ext_resource type="Script" path="res://Scripts/Hair.gd" id="4_icemg"]
+[ext_resource type="Resource" uid="uid://c3qdw8fkihda" path="res://Resources/CharacterData.tres" id="4_m3ceq"]
+[ext_resource type="Script" path="res://Scripts/Outfit.gd" id="6_bwt7x"]
+[ext_resource type="Script" path="res://Scripts/Accessory.gd" id="8_g2vym"]
+
+[node name="CharacterCreator" type="Node2D"]
+script = ExtResource("1_bg80m")
+character_data = ExtResource("4_m3ceq")
+main_scene = ExtResource("2_ycbt4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.466667, 0.737255, 0.870588, 1)
+
+[node name="Skeleton" type="Node2D" parent="."]
+position = Vector2(570, 120)
+scale = Vector2(5, 5)
+
+[node name="Body" type="Node2D" parent="Skeleton"]
+script = ExtResource("2_gyln6")
+character_options = ExtResource("3_war4w")
+character_data = ExtResource("4_m3ceq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton/Body"]
+texture = ExtResource("1_pccad")
+hframes = 8
+vframes = 8
+
+[node name="Hair" type="Node2D" parent="Skeleton"]
+script = ExtResource("4_icemg")
+character_options = ExtResource("3_war4w")
+character_data = ExtResource("4_m3ceq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton/Hair"]
+hframes = 8
+vframes = 8
+
+[node name="Outfit" type="Node2D" parent="Skeleton"]
+script = ExtResource("6_bwt7x")
+character_options = ExtResource("3_war4w")
+character_data = ExtResource("4_m3ceq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton/Outfit"]
+texture = ExtResource("3_egm57")
+hframes = 8
+vframes = 8
+
+[node name="Accessory" type="Node2D" parent="Skeleton"]
+script = ExtResource("8_g2vym")
+character_options = ExtResource("3_war4w")
+character_data = ExtResource("4_m3ceq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton/Accessory"]
+hframes = 8
+vframes = 8
+
+[node name="EditorWindow" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="EditorWindow"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -375.0
+offset_top = 219.0
+offset_right = 375.0
+offset_bottom = 619.0
+grow_horizontal = 2
+color = Color(0.298039, 0.498039, 0.8, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="EditorWindow/ColorRect"]
+layout_mode = 2
+offset_right = 750.0
+offset_bottom = 400.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorWindow/ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="Label" type="Label" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.23
+theme_override_font_sizes/font_size = 25
+text = "Name"
+
+[node name="LineEdit" type="LineEdit" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Enter character name."
+
+[node name="Body" type="MarginContainer" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 2
+
+[node name="Body" type="HBoxContainer" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="Label" type="Label" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Body/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme_override_font_sizes/font_size = 25
+text = "Body"
+
+[node name="CollectionButton" type="Button" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Body/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "->"
+
+[node name="Label2" type="Label" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Body/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme_override_font_sizes/font_size = 25
+text = "Color
+"
+
+[node name="ColorButton" type="Button" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Body/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "->"
+
+[node name="Outfit" type="MarginContainer" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Outfit" type="HBoxContainer" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Outfit"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="Label" type="Label" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Outfit/Outfit"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme_override_font_sizes/font_size = 25
+text = "Outfit"
+
+[node name="CollectionButton" type="Button" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Outfit/Outfit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "->"
+
+[node name="Label2" type="Label" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Outfit/Outfit"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme_override_font_sizes/font_size = 25
+text = "Color"
+
+[node name="ColorButton" type="Button" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Outfit/Outfit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "->"
+
+[node name="Hair" type="MarginContainer" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Hair" type="HBoxContainer" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Hair"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="Label" type="Label" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Hair/Hair"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme_override_font_sizes/font_size = 25
+text = "Hair"
+
+[node name="CollectionButton" type="Button" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Hair/Hair"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "->"
+
+[node name="Label2" type="Label" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Hair/Hair"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme_override_font_sizes/font_size = 25
+text = "Color"
+
+[node name="ColorButton" type="Button" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Hair/Hair"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "->"
+
+[node name="Accessory" type="MarginContainer" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 5
+
+[node name="Accessory" type="HBoxContainer" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Accessory"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="Label" type="Label" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Accessory/Accessory"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme_override_font_sizes/font_size = 25
+text = "Accessory"
+
+[node name="CollectionButton" type="Button" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Accessory/Accessory"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "->"
+
+[node name="Label2" type="Label" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Accessory/Accessory"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme_override_font_sizes/font_size = 25
+text = "Color"
+
+[node name="ColorButton" type="Button" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Accessory/Accessory"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "->"
+
+[node name="ConfirmButton" type="Button" parent="EditorWindow/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+theme_override_font_sizes/font_size = 25
+text = "Confirm"
+
+[connection signal="text_changed" from="EditorWindow/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Body/Body/CollectionButton" to="Skeleton/Body" method="_on_collection_button_pressed"]
+[connection signal="pressed" from="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Body/Body/ColorButton" to="Skeleton/Body" method="_on_color_button_pressed"]
+[connection signal="pressed" from="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Outfit/Outfit/CollectionButton" to="Skeleton/Outfit" method="_on_collection_button_pressed"]
+[connection signal="pressed" from="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Outfit/Outfit/ColorButton" to="Skeleton/Outfit" method="_on_color_button_pressed"]
+[connection signal="pressed" from="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Hair/Hair/CollectionButton" to="Skeleton/Hair" method="_on_collection_button_pressed"]
+[connection signal="pressed" from="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Hair/Hair/ColorButton" to="Skeleton/Hair" method="_on_color_button_pressed"]
+[connection signal="pressed" from="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Accessory/Accessory/CollectionButton" to="Skeleton/Accessory" method="_on_collection_button_pressed"]
+[connection signal="pressed" from="EditorWindow/ColorRect/MarginContainer/VBoxContainer/Accessory/Accessory/ColorButton" to="Skeleton/Accessory" method="_on_color_button_pressed"]
+[connection signal="pressed" from="EditorWindow/ColorRect/MarginContainer/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
